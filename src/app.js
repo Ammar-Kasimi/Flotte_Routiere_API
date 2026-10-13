@@ -1,14 +1,18 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const router = require('./routes/router')
+const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
+
 const authRoutes = require('./routes/authRoutes');
 const camionRoutes = require('./routes/camionRoutes');
 const remorqueRoutes = require('./routes/remorqueRoutes');
+const pneuRoutes = require('./routes/pneuRoutes');
+const trajetRoutes = require('./routes/trajetRoutes');
+const maintenanceRoutes = require('./routes/maintenanceRoutes');
+
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
-app.use(express.json())
+app.use(express.json());
 
 const swaggerOptions = {
     definition: {
@@ -27,14 +31,16 @@ const swaggerOptions = {
     },
     apis: ['./src/routes/*.js'],
 };
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerJsdoc(swaggerOptions)));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/camions', camionRoutes);
 app.use('/api/remorques', remorqueRoutes);
-app.use('/api/pneus', require('./routes/pneuRoutes'));
-app.use('/api/trajets', require('./routes/trajetRoutes'));
-app.use('/api/maintenance', require('./routes/maintenanceRoutes'));
+app.use('/api/pneus', pneuRoutes);
+app.use('/api/trajets', trajetRoutes);
+app.use('/api/maintenance', maintenanceRoutes);
+app.use('/api/reports', require('./routes/reportRoutes'));
 
 app.use((err, req, res, next) => {
     const status = err.status || 500;

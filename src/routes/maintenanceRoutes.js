@@ -4,7 +4,7 @@ const maintenanceController = require('../controllers/MaintenanceController');
 const { verifyToken } = require('../middlewares/authMiddleware');
 const { isAdmin } = require('../middlewares/roleMiddleware');
 const { validate } = require('../middlewares/validateMiddleware');
-const { regleValidation } = require('../validations/maintenanceValidation');
+const { regleValidation } = require('../validators/maintenanceValidation');
 
 /**
  * @swagger

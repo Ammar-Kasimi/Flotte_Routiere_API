@@ -36,4 +36,4 @@ class CamionService {
     }
 }
 
-module.exports = new CamionService();valida
+module.exports = new CamionService();

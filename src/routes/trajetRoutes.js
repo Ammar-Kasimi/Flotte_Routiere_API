@@ -9,7 +9,7 @@ const {
     trajetUpdateValidation, 
     trajetFinValidation,
     statutValidation 
-} = require('../validations/trajetValidation');
+} = require('../validators/trajetValidation');
 
 /**
  * @swagger

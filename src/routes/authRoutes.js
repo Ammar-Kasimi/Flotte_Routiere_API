@@ -5,6 +5,60 @@ const { verifyToken } = require('../middlewares/authMiddleware');
 
 const { isAdmin } = require('../middlewares/roleMiddleware');
 
+/**
+ * @swagger
+ * /api/auth/chauffeurs:
+ *   post:
+ *     summary: Créer un compte chauffeur (Admin uniquement)
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nom: { type: string }
+ *               email: { type: string }
+ *               motDePasse: { type: string }
+ *     responses:
+ *       201:
+ *         description: Chauffeur créé avec succès
+ */
+
+/**
+ * @swagger
+ * /api/auth/logout:
+ *   post:
+ *     summary: Déconnecter l'utilisateur courant
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Déconnexion réussie
+ */
+
+/**
+ * @swagger
+ * /api/auth/refresh:
+ *   post:
+ *     summary: Rafraîchir le token d'accès
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               refreshToken: { type: string }
+ *     responses:
+ *       200:
+ *         description: Nouveaux tokens générés
+ */
 
 /**
  * @swagger

@@ -4,9 +4,72 @@ const remorqueController = require('../controllers/RemorqueController');
 const { verifyToken } = require('../middlewares/authMiddleware');
 const { isAdmin } = require('../middlewares/roleMiddleware');
 const { validate } = require('../middlewares/validateMiddleware');
-const { remorqueSchemaValidation } = require('../validations/remorqueValidation');
+const { remorqueSchemaValidation } = require('../validators/remorqueValidation');
 
 router.use(verifyToken, isAdmin);
+
+/**
+ * @swagger
+ * /api/remorques/{id}:
+ *   get:
+ *     summary: Récupérer une remorque par ID (Admin uniquement)
+ *     tags: [Remorques]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Détails de la remorque
+ * 
+ *   put:
+ *     summary: Mettre à jour une remorque (Admin uniquement)
+ *     tags: [Remorques]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               immatriculation: { type: string }
+ *               capacite: { type: number }
+ *               statut: { type: string, enum: ['DISPONIBLE', 'EN_MAINTENANCE'] }
+ *     responses:
+ *       200:
+ *         description: Remorque mise à jour
+ */
+
+/**
+ * @swagger
+ * /api/remorques/{id}/archive:
+ *   patch:
+ *     summary: Archiver (soft delete) une remorque (Admin uniquement)
+ *     tags: [Remorques]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Remorque archivée avec succès
+ */
 
 /**
  * @swagger
