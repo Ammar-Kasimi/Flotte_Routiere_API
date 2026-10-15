@@ -57,7 +57,6 @@ class AuthService {
             throw error;
         }
         
-        // FIXED: The guard is now correctly placed in the refresh flow
         if (!user.refreshTokenHash) {
             const error = new Error('Aucune session active. Veuillez vous reconnecter.');
             error.status = 401;
