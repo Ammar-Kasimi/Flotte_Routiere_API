@@ -1,0 +1,53 @@
+@startuml
+left to right direction
+
+actor "Administrateur" as Admin
+actor "Chauffeur" as Driver
+
+usecase "S'authentifier et rafraichir le token" as UC_Auth
+
+usecase "Gerer les ressources (CRUD)" as UC_Manage_Resources
+usecase "Gerer les chauffeurs" as UC_Manage_Drivers
+usecase "Consulter tous les trajets" as UC_View_All_Trips
+usecase "Creer un trajet" as UC_Create_Trip
+usecase "Assigner un trajet" as UC_Assign_Trip
+usecase "Modifier un trajet" as UC_Modify_Trip
+usecase "Corriger un statut de trajet" as UC_Fix_Status
+usecase "Verifier la disponibilite" as UC_Check_Availability
+
+usecase "Configurer les regles de maintenance" as UC_Config_Maintenance
+usecase "Consulter les alertes de maintenance" as UC_View_Alerts
+usecase "Traiter une alerte de maintenance" as UC_Treat_Alert
+usecase "Consulter les rapports" as UC_Reports
+
+usecase "Consulter ses propres trajets" as UC_View_Own_Trips
+usecase "Telecharger l ordre de mission PDF" as UC_Download_PDF
+usecase "Mettre a jour le statut du trajet" as UC_Update_Status
+usecase "Saisir kilometrage gasoil et remarques" as UC_Input_Data
+
+usecase "Calculer km cumule et generer alertes" as UC_Trigger_Alerts
+
+UC_Assign_Trip ..> UC_Check_Availability : include
+UC_Modify_Trip ..> UC_Check_Availability : include
+UC_Update_Status ..> UC_Trigger_Alerts : include
+
+Admin --> UC_Manage_Resources
+Admin --> UC_Manage_Drivers
+Admin --> UC_View_All_Trips
+Admin --> UC_Create_Trip
+Admin --> UC_Assign_Trip
+Admin --> UC_Modify_Trip
+Admin --> UC_Fix_Status
+Admin --> UC_Config_Maintenance
+Admin --> UC_View_Alerts
+Admin --> UC_Treat_Alert
+Admin --> UC_Reports
+Admin --> UC_Auth
+
+Driver --> UC_View_Own_Trips
+Driver --> UC_Download_PDF
+Driver --> UC_Update_Status
+Driver --> UC_Input_Data
+Driver --> UC_Auth
+
+@enduml
